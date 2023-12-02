@@ -76,22 +76,21 @@ function playFullRound() {
       );
     }
   }
-
   console.log(playRound(playerResult, computerResult));
 }
 
 //Run game until 5
 
+
 for (let i = 0; i < 50; i++) {
-  if (playerScore || computerScore === 5) {
+  if (playerScore === 5 || computerScore === 5) {
     console.log(
       "The final score is: Computer " +
         computerScore +
-        "and Player " +
-        playerScore
+        " and Player " +
+        playerScore + "."
     );
-  } else if (playerScore || computerScore > 5) {
+  } else if (playerScore || computerScore < 5) {
     playFullRound();
   }
 }
-
