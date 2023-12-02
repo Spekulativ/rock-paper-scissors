@@ -33,7 +33,7 @@ function playFullRound() {
       return "Rock";
     } else if (playerInput === "paper") {
       return "Paper";
-    } else if ((playerInput === "scissors", playerInput === "scissor")) {
+    } else if (playerInput === "scissors" || playerInput === "scissor") {
       return "Scissors";
     } else return "Invalid input. Type again.", getPlayerChoice();
   }
@@ -56,7 +56,11 @@ function playFullRound() {
         computerScore +
         "."
       );
-    } else if (playerResult === "Rock" && computerResult === "Paper") {
+    } else if (
+      (playerResult === "Rock" && computerResult === "Paper") ||
+      (playerResult === "Scissors" && computerResult === "Rock") ||
+      (playerResult === "Paper" && computerResult === "Scissors")
+    ) {
       return (
         computerScore++,
         "You lose! Your score is " +
@@ -65,7 +69,11 @@ function playFullRound() {
           computerScore +
           "."
       );
-    } else if (playerResult === "Rock" && computerResult === "Scissors") {
+    } else if (
+      (playerResult === "Rock" && computerResult === "Scissors") ||
+      (playerResult === "Scissors" && computerResult === "Paper") ||
+      (playerResult === "Paper" && computerResult === "Rock")
+    ) {
       return (
         playerScore++,
         "You win! Your score is " +
@@ -81,15 +89,27 @@ function playFullRound() {
 
 //Run game until 5
 
-
 for (let i = 0; i < 50; i++) {
   if (playerScore === 5 || computerScore === 5) {
-    console.log(
-      "The final score is: Computer " +
-        computerScore +
-        " and Player " +
-        playerScore + "."
-    );
+    if (playerScore === 5) {
+      console.log(
+        "Congratulations. You won the game! Your score was " +
+          playerScore +
+          ". The score of the computer was " +
+          computerScore +
+          "."
+      );
+    } else if (computerScore === 5) {
+      {
+        console.log(
+          "You suck. You lost the game! Your score was " +
+            playerScore +
+            ". The score of the computer was " +
+            computerScore +
+            "."
+        );
+      }
+    }
   } else if (playerScore || computerScore < 5) {
     playFullRound();
   }
